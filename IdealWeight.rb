@@ -5,9 +5,9 @@ answer = gets.chomp.downcase
 case answer
 when 'yes'
   puts "Good, tell me, how tall are you in centimeters?"
-  height = gets.chomp
+  height = gets.to_i
   if (height.to_i - 110)*1.15 > 0
-    puts "#{name}, your ideal weight is #{(height.to_i - 110)*1.15}"
+          puts "#{name}, your ideal weight is #{((height - 110)*1.15).round(0)} killograms"
   else
     puts "Woops, your weight is already optimal, don't worry about it!"
   end
