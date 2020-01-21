@@ -7,7 +7,7 @@ when 'yes'
   puts "Good, tell me, how tall are you in centimeters?"
   height = gets.to_i
   if (height.to_i - 110)*1.15 > 0
-          puts "#{name}, your ideal weight is #{((height - 110)*1.15).round(0)} killograms"
+    puts "#{name}, your ideal weight is #{((height - 110)*1.15).round(0)} killograms"
   else
     puts "Woops, your weight is already optimal, don't worry about it!"
   end
