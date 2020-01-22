@@ -14,4 +14,4 @@ elsif d == 0
   puts "Discriminant is: 0 and X1 = X2 = #{((-b + Math.sqrt(d))/(2.0*a)).round(1)}"
 else
   puts "Discriminant is: #{d} (less then zero), no solution roots."
-end
+end 
