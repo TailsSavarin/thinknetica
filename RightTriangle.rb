@@ -16,5 +16,5 @@ elsif a == b && a == c
 elsif a == b || a == c || b == c
   puts "Triangle is isosceles."
 else
-  puts "Triangle not is rectangular, isosceles or equilateral"
+  puts "Triangle is miscellaneous."
 end 
