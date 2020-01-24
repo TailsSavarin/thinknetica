@@ -3,4 +3,5 @@ vowels_hash = {}
 alphabet = ('a'..'z').to_a
 vowels = ['a', 'e', 'i', 'o', 'u', 'y']
 vowels.each { |vowel| vowels_hash[vowel] = alphabet.index(vowel) + 1 }
-puts vowels_hash
+puts "Letter - number"
+vowels_hash.each { |x, y| puts "#{x} is #{y}" }
