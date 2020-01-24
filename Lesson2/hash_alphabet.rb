@@ -1,9 +1,6 @@
-vowels = %w{a e i o u y}
+#adding empty vowels_hash
+vowels_hash = {}
 alphabet = ('a'..'z').to_a
-vowels_letter = {}
-vowels.each do |vowel| 
-  vowels_letter[vowel] = alphabet.index(vowel) + 1 
-end
-puts vowels_letter
-
-
+vowels = ['a', 'e', 'i', 'o', 'u', 'y']
+vowels.each { |vowel| vowels_hash[vowel] = alphabet.index(vowel) + 1 }
+puts vowels_hash
