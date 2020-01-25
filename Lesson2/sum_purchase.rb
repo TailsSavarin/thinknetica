@@ -23,16 +23,17 @@ loop do
   products = {price: product_price, count: product_count}
   food_basket[product_name] = products 
 end
-
+#Adding a empty baske method
 if food_basket.empty?
   puts "Sorry, but your basket is empty, please try again!" 
 else
 #Addint currently products in the basket
   puts "Currently in your basket is:"
   puts "Name - [Price, Count]"
-  food_basket.each { |x, y| puts "#{x.capitalize} - #{y.values}" }
+  food_basket.map { |x, y| puts "#{x.capitalize} - #{y.values}" }
 
-  puts "The final price for each product: Name - price"
+  puts "The final price for each product:" 
+  puts "Name - price"
   food_basket.each do |key, value|
     sum_product_price = value[:price] * value[:count]
     total_sum += sum_product_price
