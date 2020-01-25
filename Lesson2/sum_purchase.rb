@@ -1,5 +1,5 @@
 #Adding empty basket hash for products
-food_basket = Hash.new(0)
+food_basket = {}
 #Adding total purchase amount atm
 total_sum = 0
 total_sum.to_f
