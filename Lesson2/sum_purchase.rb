@@ -19,7 +19,7 @@ loop do
   print "The product's count: "
   product_count = gets.to_f 
 
-#Adding item hash for food_basket
+  #Adding item hash for food_basket
   products = {price: product_price, count: product_count}
   food_basket[product_name] = products 
 end
@@ -27,7 +27,7 @@ end
 if food_basket.empty?
   puts "Sorry, but your basket is empty, please try again!" 
 else
-#Addint currently products in the basket
+  #Addint currently products in the basket
   puts "Currently in your basket is:"
   puts "Name - [Price, Count]"
   food_basket.map { |x, y| puts "#{x.capitalize} - #{y.values}" }
