@@ -21,19 +21,9 @@ months = {
   12 => 31
 }
 #Adding leap year fix                                                   
-if ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)                
-  months[2] = 29                                                            
-end   
+months[2] = 29 if ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)                
 #Adding date serial number variable
-serial_number = 0      
-
-months.each do |key, value| 
-  if key < month
-    serial_number += value
-  elsif key == month
-    serial_number += day
-  end
-end
+serial_number = months.take(month - 1).sum(day) { |month, day| day } 
 
 puts "Date serial number is: #{serial_number}."
     
