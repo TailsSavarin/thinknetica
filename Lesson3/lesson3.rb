@@ -25,7 +25,7 @@ class Station
   end
 
   def list_type(type)
-    puts trains_list.select { |x| x.type == type }
+    trains_list.select { |x| x.type == type }
   end
 end
 
