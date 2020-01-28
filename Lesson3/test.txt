@@ -43,4 +43,8 @@ train1.move_forward
 train1.move_back
 train1.next_station
 train1.previous_station
+train2.move_forward
+train2.move_back
+train2.next_station
+train2.previous_station
 
