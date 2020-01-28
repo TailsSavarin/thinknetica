@@ -33,7 +33,7 @@ train1.current_station
 station1.trains_list
 train1.route_assignment(route1)
 train2.route_assignment(route1)
-station1.trains
+station1.trains_list
 station1.list_type('cargo')
 station1.list_type('passenger')
 train1.current_station
