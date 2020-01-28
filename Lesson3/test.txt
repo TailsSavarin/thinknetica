@@ -7,7 +7,7 @@ train1.speed_up(10)
 train1.speed_up(90)
 train1.speed
 train1.speed_down
-train1.speed_down(10)
+train1.speed_down(90)
 
 train1.sum_trains
 train1.add_train
