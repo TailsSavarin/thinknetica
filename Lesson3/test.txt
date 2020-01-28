@@ -39,7 +39,7 @@ station1.list_type('passenger')
 train1.current_station
 train2.current_station
 
-trai1.move_forward
+train1.move_forward
 train1.move_back
 train1.next_station
 train1.previous_station
