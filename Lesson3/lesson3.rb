@@ -1,71 +1,49 @@
 class Station
-  attr_reader :name, :trains_list
+  attr_reader :name, :trains
 
   def initialize(name)
     @name = name
-    @trains_list = []
+    @trains = []
   end
 
-  def train_arrive(number)
-    if trains_list.include?(number)
-      puts "This train aleady located at the station!" 
-    else
-      trains_list << number
-      puts "Train: #{number} arrived at the #{name} station."
-    end
+  def take_train(train)
+    trains << train unless trains.include?(train)
   end
 
-  def train_send(number)
-    if trains_list.include?(number) 
-      trains_list.delete(number)
-      puts "Train: #{train} left the #{name} station."
-    else 
-      puts "This train already left the station!"
-    end
+  def send_train(train)
+    trains.delete(train) if trains.include(train)
   end
 
   def list_type(type)
-    puts trains_list.select { |x| x.type == type }
+    trains.select { |x| x.type == type }
   end
 end
 
 class Route
-  attr_reader :stations
+  attr_reader :stations, :first_station, :last_station
 
   def initialize(first_station, last_station)
+    @first_station = first_station
+    @last_station = last_station
     @stations = [first_station, last_station]
   end
 
-  def station_add(name)
-    if stations.include?(name)
-      puts "Station with that name already in the list!"
-    else
-      stations.insert(-2, name)
-      puts "Station: #{name}, was added."
-    end
+  def add_station(station)
+    stations.insert(-2, station) unless stations.include?(station)
   end
 
-  def station_delete(name)
-    if stations.include?(name)
-      stations.delete(name)
-      puts "Station: #{name}, was deleted."
-    else
-      puts "Station with that name already deleted"
-    end
-  end
-
-  def station_list
-    puts stations.select(&:name).join("->")
+  def delete_station(station)
+    stations.delete(station) if stations.include?(station)
   end
 end
 
 class Train
-  attr_reader :number, :type, :sum_trains, :speed, :route, :current_station
+  attr_reader :number, :type, :count, :speed, :current_route
 
-  def initialize(number, type, sum_trains)
+  def initialize(number, type, count)
     @number = number
     @type = type
-    @sum_trains = sum_trains
+    @count = count
     @speed = 0
   end
 
@@ -80,40 +58,37 @@ class Train
   end
 
   def add_train
-    @sum_trains += 1 if @speed == 0
+    @count += 1 if @speed == 0
   end
 
   def delete_train
-    @sum_trains -= 1 if @sum_trains > 0 && @speed == 0
-  end
-
-  def current_station=(station)
-    current_station.train_send(self) if current_station
-    @current_station = station
-    station.train_arrive(self)
+    @count -= 1 if @count > 0 && @speed == 0
   end
 
   def route_assignment(route)
-    @route = route
-    self.current_station = route.stations.first
+    @current_route = route
+    current_route.first_station.take_train(self)
   end
 
+  def current_station
+    @current_route.stations.each.find { |station| station.trains.include?(self) }
+  end
+  
   def next_station
-    current_station_index = route.stations.index(current_station)
-    route.stations[current_station_index + 1] if route.stations[current_station_index + 1]
+    current_station_index = @current_route.stations.index(current_station)
+    @current_route.stations[current_station_index + 1] if @current_route.stations[current_station_index + 1]
   end
 
   def previous_station
-    cureent_station_index = route.stations.index(current_station)
-    route.stations[current_station_index - 1] if route.stations[current_station_index - 1]
+    current_station_index = @current_route.stations.index(current_station)
+    @current_route.stations[current_station_index - 1] if @current_route.stations[current_station_index - 1]
   end
 
   def move_forward
-    self.courrent_station = next_station
+    self.current_station = next_station
   end
-  
-  def move_back
+
+  def move_bakc 
     self.current_station = previous_station
   end
 end
-
