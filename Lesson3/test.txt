@@ -7,7 +7,7 @@ train1.speed_up(10)
 train1.speed_up(90)
 train1.speed
 train1.speed_down
-train1.speed_down(10)
+train1.speed_down(90)
 
 train1.sum_trains
 train1.add_train
@@ -33,14 +33,18 @@ train1.current_station
 station1.trains_list
 train1.route_assignment(route1)
 train2.route_assignment(route1)
-station1.trains
+station1.trains_list
 station1.list_type('cargo')
 station1.list_type('passenger')
 train1.current_station
 train2.current_station
 
-trai1.move_forward
+train1.move_forward
 train1.move_back
 train1.next_station
 train1.previous_station
+train2.move_forward
+train2.move_back
+train2.next_station
+train2.previous_station
 
