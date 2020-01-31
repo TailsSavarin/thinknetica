@@ -11,7 +11,7 @@ class Station
   end
 
   def send_train(train)
-    trains.delete(train) if trains.include(train)
+    trains.delete(train) if trains.include?(train)
   end
 
   def list_type(type)
@@ -38,7 +38,7 @@ class Route
 end
 
 class Train
-  attr_reader :number, :type, :count, :speed, :current_route
+  attr_reader :number, :type, :count, :speed, :route, :location
 
   def initialize(number, type, count)
     @number = number
@@ -66,29 +66,34 @@ class Train
   end
 
   def route_assignment(route)
-    @current_route = route
-    current_route.first_station.take_train(self)
+    @route = route
+    @location = @route.first_station
+    route.first_station.take_train(self)
   end
 
   def current_station
-    @current_route.stations.each.find { |station| station.trains.include?(self) }
+    @route.stations.each.find { |station| station.trains.include?(self) }
   end
   
   def next_station
-    current_station_index = @current_route.stations.index(current_station)
-    @current_route.stations[current_station_index + 1] if @current_route.stations[current_station_index + 1]
+    index = @route.stations.index(@location) + 1
+    @route.stations[index]
   end
 
   def previous_station
-    current_station_index = @current_route.stations.index(current_station)
-    @current_route.stations[current_station_index - 1] if @current_route.stations[current_station_index - 1]
+    index = @route.stations.index(@location) - 1
+    @route.stations[index]
   end
 
   def move_forward
-    self.current_station = next_station
+    @location.send_train(self)
+    @location =self.next_station
+    @location.take_train(self)
   end
 
-  def move_bakc 
-    self.current_station = previous_station
+  def move_back 
+    @location.send_train(self)
+    @location = self.previous_station
+    @location.take_train(self)
   end
 end
