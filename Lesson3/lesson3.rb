@@ -87,7 +87,7 @@ class Train
 
   def move_forward
     if @location == @route.last_station
-      puts "Error"
+      puts "Error, it's the last station!"
     else
     @location.send_train(self)
     @location = self.next_station
@@ -97,7 +97,7 @@ class Train
 
   def move_back 
     if @location == @route.first_station
-      puts "Error!"
+      puts "Error, it's the first station!"
     else
     @location.send_train(self)
     @location = self.previous_station
