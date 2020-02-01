@@ -7,7 +7,7 @@ class Station
   end
 
   def take_train(train)
-    trains << train unless trains.include?(train)
+    trains.push(train) unless trains.include?(train)
   end
 
   def send_train(train)
@@ -58,11 +58,11 @@ class Train
   end
 
   def add_train
-    @count += 1 if @speed == 0
+    @count += 1 if @speed.zero?
   end
 
   def delete_train
-    @count -= 1 if @count > 0 && @speed == 0
+    @count -= 1 if @count > 0 && @speed.zero?
   end
 
   def route_assignment(route)
