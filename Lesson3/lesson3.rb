@@ -38,7 +38,7 @@ class Route
 end
 
 class Train
-  attr_reader :number, :type, :count, :speed, :route, :location
+  attr_reader :number, :type, :count, :speed, :route
 
   def initialize(number, type, count)
     @number = number
@@ -67,7 +67,6 @@ class Train
 
   def route_assignment(route)
     @route = route
-    @location = @route.first_station
     route.first_station.take_train(self)
   end
 
@@ -76,32 +75,26 @@ class Train
   end
   
   def next_station
-    index_station = @route.stations.index(@location) + 1
+    index_station = @route.stations.index(current_station) + 1
     @route.stations[index_station]
   end
 
   def previous_station
-    index_station = @route.stations.index(@location) - 1
+    index_station = @route.stations.index(current_station) - 1
     @route.stations[index_station]
   end
 
   def move_forward
-    if @location == @route.last_station
-      puts "Error, it's the last station!"
-    else
-    @location.send_train(self)
-    @location = self.next_station
-    @location.take_train(self)
-    end
+    return unless next_station
+    station = next_station
+    current_station.send_train(self)
+    station.take_train(self)
   end
 
   def move_back 
-    if @location == @route.first_station
-      puts "Error, it's the first station!"
-    else
-    @location.send_train(self)
-    @location = self.previous_station
-    @location.take_train(self)
-    end
+    return unless previous_station
+    station = previous_station
+    current_station.send_train(self)
+    station.take_train(self)
   end
 end
