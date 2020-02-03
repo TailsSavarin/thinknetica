@@ -75,13 +75,15 @@ class Train
   end
   
   def next_station
+    return unless current_station != @route.last_station
     index_station = @route.stations.index(current_station) + 1
-    @route.stations[index_station] if current_station != @route.last_station
+    @route.stations[index_station]
   end
 
   def previous_station
+    return unless current_station != @route.first_station
     index_station = @route.stations.index(current_station) - 1
-    @route.stations[index_station] if current_station != @route.first_station
+    @route.stations[index_station] 
   end
 
   def move_forward
