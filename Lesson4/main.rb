@@ -81,7 +81,10 @@ def create_train
             puts "Train - #{number}, was created."
           end
         end
+    when '0'
+      main_menu
     end
+  create_train
 end
 
 #Create routes and manage stations in it
