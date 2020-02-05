@@ -5,6 +5,6 @@ class PassengerTrain < Train
   end
 
   def add_wagon(wagon)
-    super(wagon)
+    super(wagon) if wagon.passenger_wagon? && wagon
   end
 end

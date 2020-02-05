@@ -7,16 +7,14 @@ require_relative 'cargo_wagon'
 require_relative 'passenger_train'
 require_relative 'passenger_wagon'
 
-#Adding empty arrays for data
+#Create empty arrays for data
 
 @stations = []
 @trains = []
 @routes = []
-@wagons = []
 
-#Adding main menu
-
-def main_menu
+#Create main menu
+def main_nemu
   puts "What would you like to do?"
   puts "-- Type '1' to create a station."
   puts "-- Type '2' to create a train."
@@ -29,31 +27,46 @@ def main_menu
   puts "-- Type '0' to exit."
 end
 
-#Create a station
-def station_name
-  puts 'What a nme of the station you want to create?'
-  station_name = gets.chomp.capitalize
-end
-
-def create_station(name)
-  station = Station.new(name)
-  @stations.push(station)
-  puts "#{station} was created."
-end
-
-#Just a main menu plan
-main_menu
-choice = gets.to_f
-case choice
-  when '1'
-  when '2'
-  when '3'
-  when '4'
-  when '5'
-  when '6'
-  when '7'
-  when '8'
-  when '0'
+#1. Create a station
+def create_station
+  puts 'What a name of the station you want to create?'
+  name = gets.chomp.capitalize
+  if @stations.include?(name)
+    puts 'Sorry, but this station already created.'
   else
+    @stations.push(Station.new(name))
+    puts "#{station} was created."
+  end
 end
 
+#2. Create a train
+def create_train
+  puts 'What a number of the train you want to create?'
+  puts 'For example -- 123 -- '
+  number = gets.chomp.to_i
+
+  puts 'Select a type of the train you want to create?'
+  puts "-- Type '1' for Passenger train."
+  puts "-- Type '2' for Cargo train."
+
+  type = gets.chomp.to_i
+  case type
+    when '1'
+    if @trains.include?(number)
+      puts 'Sorry, but this train already created'
+    else
+      @trains.push(PassengerTrain.new(number))
+      puts "Train - #{number} was created."
+    end
+    when '2'
+    if @trains.include?(number)
+      puts 'Sorry, but this train already created'
+    else
+      @trains.push(PassengerTrain.new(number))
+      puts "Train - #{number} was created."
+    end
+  end
+end
+
+#Create routes and manage stations in it
+def create_routes

@@ -3,5 +3,9 @@ class CargoWagon < Wagon
     super(num)
     @type = 'cargo'
   end
+
+  def cargo_wagon?
+    true
+  end
 end
 
