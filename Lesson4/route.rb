@@ -7,7 +7,6 @@ class Route
     @stations = [first_station, last_station]
   end
   
-  #Station manipulation
   def add_station(station)
     stations.insert(-2, station) unless stations.include?(station)
   end
