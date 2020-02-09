@@ -1,22 +1,23 @@
 class Station
-  attr_reader :name, :trains
+  attr_reader :name, :trains_list
 
   def initialize(name)
     @name = name
-    @trains = []
+    @trains_list = []
   end
   
-  def trains_by_type(type)
-    trains.select { |x| x.type == type }
-  end
-
   def take_train(train)
-    trains.push(train) unless trains.include?(train)
+    trains_list.push(train) unless trains_list.include?(train)
   end
 
   def send_train(train)
-    trains.delete(train) if trains.include?(train)
+    trains_list.delete(train) if trains_list.include?(train)
+  end
+
+private
+
+  def trains_by_type(type)
+    trains_list.select { |x| x.type == type }
   end
 end
-
 

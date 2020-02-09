@@ -1,11 +1,7 @@
 class CargoWagon < Wagon
-  def initialize(num)
-    super(num)
-    @type = 'cargo'
-  end
 
-  def cargo_wagon?
-    true
+  def initialize
+    @type = 'cargo'
   end
 end
 
