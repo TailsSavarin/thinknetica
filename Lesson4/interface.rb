@@ -16,22 +16,58 @@ class Interface
     @routes = []
   end
   
-  def seed
-    station1 = Station.new('test1')
-    station2 = Station.new('test2')
-    station3 = Station.new('test3')
-    station4 = Station.new('test4')
+  def main_menu
+    loop do
+      puts "What would you like to do?\n "
+      puts "-- Type '1' to create a station.\n "
+      puts "-- Type '2' to create a train.\n "
+      puts "-- Type '3' to create a route.\n "
+      puts "-- Type '4' to assign a train route.\n "
+      puts "-- Type '5' to add or delete station in route.\n "
+      puts "-- Type '6' to add wagons to the train.\n "
+      puts "-- Type '7' to delete wagons from the train.\n "
+      puts "-- Type '8' to move train front.\n "
+      puts "-- Type '9' to move train back.\n "
+      puts "-- Type '10' to view the list of stations.\n "
+      puts "-- Type '11' to view the list of trains at the station.\n "
+      puts "-- Type '12' to exit.\n "
+      print 'Write your answer here --> '
 
-    route1 = Route.new(station1, station2)
-    route2 = Route.new(station3, station4)
-
-    passenger_train = PassengerTrain.new('123')
-    cargo_train = CargoTrain.new('456')
-
-    @stations = [station1, station2, station3, station4]
-    @trains = [passenger_train, cargo_train]
-    @routes = [route1, route2]
+      choice = gets.chomp.to_i
+  
+      case choice
+      when 1
+        create_station
+      when 2  
+        create_train
+      when 3  
+        create_route
+      when 4  
+        route_assignment_for_train
+      when 5
+        route_add_delete_stations
+      when 6  
+        add_wagon_for_train
+      when 7  
+        delete_wagon_from_train
+      when 8  
+        train_move_forward
+      when 9  
+        train_move_back
+      when 10
+        list_of_station
+      when 11
+        trains_on_station
+      when 12  
+        puts "Good bye!"
+      break
+      else
+        puts "Error..."
+      end
+    end
   end
+
+  private
 
   def create_station
     print 'Enter name of the station --> '
@@ -45,7 +81,7 @@ class Interface
   end
 
   def create_train
-    print "Enter number of the train --> \n "
+    print 'Enter number of the train --> '
     number = gets.chomp.to_i
     puts "Select a type for your train?\n "
     puts "-- Type '1' for Passenger train."
@@ -53,20 +89,20 @@ class Interface
     type = gets.chomp.to_i
 
     case type
-      when 1
-        if find_train(number)
-          puts "Passenger train: '#{number}' already exists."
-        else
-          @trains.push(PassengerTrain.new(number))
-          puts "Train: '#{number}' was successfully created."
-        end
-      when 2
-        if find_train(number)
-          puts "Train: '#{number}' already exists."
-        else
-          @trains.push(CargoTrain.new(number))
-          puts "Cargo train: '#{number}' was successfully created."
-        end
+    when 1
+      if find_train(number)
+        puts "Passenger train: '#{number}' already exists."
+      else
+        @trains.push(PassengerTrain.new(number))
+        puts "Passenger train: '#{number}' was successfully created."
+      end
+    when 2
+      if find_train(number)
+        puts "Train: '#{number}' already exists."
+      else
+        @trains.push(CargoTrain.new(number))
+        puts "Cargo train: '#{number}' was successfully created."
+      end
     end
   end
 
@@ -85,16 +121,16 @@ class Interface
     puts "-- Type '2' if you want to delete station."
     action = gets.chomp.to_i
     case action
-      when 1
-        current_station = station_select(@stations)
-        current_route.add_station(current_station)
-        puts 'Station was successfully added. '
-      when 2
-        current_station = station_select(@stations)
-        current_route.delete_station(current_station)
-        puts 'Station was successfully deleted.'
-      else 
-        puts "Error..."
+    when 1
+      current_station = station_select(@stations)
+      current_route.add_station(current_station)
+      puts 'Station was successfully added. '
+    when 2
+      current_station = station_select(@stations)
+      current_route.delete_station(current_station)
+      puts 'Station was successfully deleted.'
+    else 
+      puts "Error..."
     end
   end
 
@@ -107,10 +143,10 @@ class Interface
 
   def add_wagon_for_train
     current_train = train_select(@trains)
-    if current_train.class == PassengerTrain
+    if current_train.type == 'passenger'
       current_train.add_wagon(PassengerWagon.new)
       puts 'Passenger wagon was added.'
-    elsif current_train.class == CargoTrain
+    elsif current_train.type == 'cargo'
       current_train.add_wagon(CargoWagon.new)
       puts 'Cargo wagon was added.'
     end
@@ -137,15 +173,15 @@ class Interface
   end
   
   def list_of_station
+    puts 'List of the stations:'
     @stations.each.with_index(1) { |station, index| puts "#{index}. #{station.name}" }
   end
 
   def trains_on_station
+    puts 'List of the trains in the stations:'
     @stations.each { |station| puts "Station: '#{station.name}' - trains: #{station.trains_list.map(&:number)}." }
   end
     
-private
-
   def route_select(routes)
     puts "Type the number of the route you want to select.\n "
     puts 'Routes list:'

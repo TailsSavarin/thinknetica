@@ -14,7 +14,7 @@ class Station
     trains_list.delete(train) if trains_list.include?(train)
   end
 
-private
+  private
 
   def trains_by_type(type)
     trains_list.select { |x| x.type == type }

@@ -5,10 +5,11 @@ class Train
     @number = number
     @speed = 0
     @wagons = []
+    @type = type 
   end
   
   def add_wagon(wagon)
-    wagons.push(wagon) if speed.zero?
+    wagons.push(wagon) if speed.zero? && wagon.type == self.type
   end
 
   def delete_wagon
@@ -50,9 +51,9 @@ class Train
     station.take_train(self)
   end
 
-private
+  private
 
- def speed_up(speed = 5)
+  def speed_up(speed = 5)
     @speed += speed
     @speed = 90 if @speed > 90
   end
@@ -65,5 +66,4 @@ private
   def emergency_brake
     @speed = 0
   end
-
 end
