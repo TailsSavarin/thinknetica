@@ -19,7 +19,7 @@ class Train
   end
   
   def self.find(number)
-      @@trains_number[number]
+    @@trains_number[number]
   end
 
   def add_wagon(wagon)
