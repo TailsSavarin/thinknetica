@@ -12,7 +12,7 @@ module InstanceCounter
     protected
 
     def register_instance
-      self.class.instances ||= nil
+      return nil if self.class.instances ||= 0
       self.class.instances += 1
     end
   end
