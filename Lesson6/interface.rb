@@ -173,8 +173,6 @@ class Interface
     puts 'List of the trains in the stations:'
     @stations.each { |station| puts "Station: '#{station.name}' - trains: #{station.trains_list.map(&:number)}." }
   end
-    
-  private
 
   def route_select(routes)
     puts "Type the number of the route you want to select.\n "
