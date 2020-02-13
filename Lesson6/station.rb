@@ -14,8 +14,8 @@ class Station
   def initialize(name)
     @name = name
     @trains_list = []
-    @@created_stations.push(self)
     validate!
+    @@created_stations.push(self)
     register_instance
   end
 
@@ -34,8 +34,16 @@ class Station
   private
 
   def validate!
+    validate_name_empty
+    validate_name_format
+  end
+
+  def validate_name
     raise ArgumentError, "Name can't be empty!" if @name.empty?
-    raise ArgumentError, "Name has invalid format!" if @name !~ NAME_FORMAT
+  end
+
+  def validate_name_format
+    raise ArgumentError, "Name '#{@name}' has invalid format!" if @name !~ NAME_FORMAT
   end
 
   def trains_by_type(type)

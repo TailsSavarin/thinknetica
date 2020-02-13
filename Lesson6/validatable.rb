@@ -3,6 +3,6 @@ module Validatable
     validate!
     true
   rescue
-    false
+    false 
   end
 end

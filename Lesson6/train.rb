@@ -17,8 +17,8 @@ class Train
     @speed = 0
     @wagons = []
     @type = type 
-    @@trains_number[number] = self
     validate!
+    @@trains_number[number] = self
     register_instance
   end
   
@@ -72,8 +72,16 @@ class Train
   private
 
   def validate!
-    raise ArgumentError, "Number can't be nil" if @number.nil?
-    raise ArgumentError, "Number has invalid format" if @number !~ NUMBER_FORMAT
+    validate_number_empty
+    validate_number_format
+  end
+
+  def validate_number_empty
+    raise ArgumentError, "Number can't be empty!" if @number.empty?
+  end
+
+  def validate_number_format
+    raise ArgumentError, "Number '#{@number}' has invalid format!" if @number !~ NUMBER_FORMAT
   end
 
   def speed_up(speed = 5)
