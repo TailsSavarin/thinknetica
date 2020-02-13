@@ -34,15 +34,15 @@ class Station
   private
 
   def validate!
-    validate_name_empty
-    validate_name_format
+    validate_name_empty!
+    validate_name_format!
   end
 
-  def validate_name_empty
+  def validate_name_empty!
     raise ArgumentError, "Name can't be empty!" if @name.empty?
   end
 
-  def validate_name_format
+  def validate_name_format!
     raise ArgumentError, "Name '#{@name}' has invalid format!" if @name !~ NAME_FORMAT
   end
 

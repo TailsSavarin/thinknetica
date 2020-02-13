@@ -72,15 +72,15 @@ class Train
   private
 
   def validate!
-    validate_number_empty
-    validate_number_format
+    validate_number_empty!
+    validate_number_format!
   end
 
-  def validate_number_empty
+  def validate_number_empty!
     raise ArgumentError, "Number can't be empty!" if @number.empty?
   end
 
-  def validate_number_format
+  def validate_number_format!
     raise ArgumentError, "Number '#{@number}' has invalid format!" if @number !~ NUMBER_FORMAT
   end
 
