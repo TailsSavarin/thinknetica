@@ -14,8 +14,8 @@ class PassengerWagon < Wagon
   
   def take_seat
     return unless @free_seats > 0
-      self.free_seats -= 1
-      self.taken_seats += 1
+    self.free_seats -= 1
+    self.taken_seats += 1
   end
 end
 

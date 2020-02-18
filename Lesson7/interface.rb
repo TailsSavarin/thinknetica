@@ -31,93 +31,111 @@ class Interface
 
       print "Write your answer here --> "
       main_choice = gets.chomp.to_i
-  
+      
       case main_choice
       when 1 
-        puts "- Type '1' to create a station ----------------------\n "
-        puts "- Type '2' to view the list of stations -------------\n "
-        puts "- Type '3' to view the list of trains at the stations\n "
-        puts "- Type '4' to view list of wagons at the station ----\n "
-        puts "- Type '0' to return to the main menu ---------------\n "
-        print "Write your answer here --> "
-        station_choice = gets.chomp.to_i
-        case station_choice
-        when 1
-          create_station
-          puts 'Station was created'
-        when 2
-          list_of_stations
-        when 3
-          trains_at_stations
-         when 4
-          wagons_list
-        when 0
-          main_menu
-        else
-          puts "Error..."
-        end
+        station_management
       when 2  
-        puts "- Type '1' to create a train ------------------------\n "
-        puts "- Type '2' to move train front ----------------------\n "
-        puts "- Type '3' to move train back -----------------------\n "
-        puts "- Type '4' to add wagons to the train ---------------\n "
-        puts "- Type '5' to delete wagons from the train ----------\n "
-        puts "- Type '6' to actions with he volume of wagons ------\n "
-        puts "- Type '0' to return to the main menu ---------------\n "
-        print "Write your answer here --> "
-        train_choice = gets.chomp.to_i
-        case train_choice
-        when 1
-          create_train
-          puts 'Train was created'
-        when 2
-          train_move_forward
-          puts 'Train moving front'
-        when 3
-          train_move_back
-          puts 'Train moving back'
-        when 4
-          add_wagon_for_train
-          puts 'Wagon was added'
-        when 5
-          delete_wagon_from_train
-          puts 'Wagon was deleted'
-        when 6
-          wagon_volume_action
-          puts 'Action completed successfully'
-        when 0
-          main_menu
-        else
-          puts "Error..."
-        end
+        train_management
       when 3
-        puts "- Type '1' to create a route ------------------------\n " 
-        puts "- Type '2' to add or delete station in route --------\n "
-        puts "- Type '3' to assign a train route ------------------\n "
-        puts "- Type '0' to return to the main menu ---------------\n "
-        print "Write your answer here --> "
-        route_choice = gets.chomp.to_i
-        case route_choice
-        when 1 
-          create_route
-          puts 'Route was created'
-        when 2
-          route_add_delete_stations
-          puts 'Action completed successfully'
-        when 3
-          route_assignment_for_train
-          puts 'Route was assigned'
-        when 0 
-          main_menu
-        else
-          puts "Error..."
-        end
+        route_management
       when 0
-       puts "Good bye!"
-      break
+        puts 'Good bye!'
+        break
       else
-        puts "Error..."
+        puts 'Error...'
       end
+    end
+  end
+
+  def station_management
+    puts "- Type '1' to create a station ----------------------\n "
+    puts "- Type '2' to view the list of stations -------------\n "
+    puts "- Type '3' to view the list of trains at the stations\n "
+    puts "- Type '4' to view list of wagons at the station ----\n "
+    puts "- Type '0' to return to the main menu ---------------\n "
+    print "Write your answer here --> "
+
+    station_choice = gets.chomp.to_i
+
+    case station_choice
+    when 1
+      create_station
+      puts 'Station was created'
+    when 2
+      list_of_stations
+    when 3
+      trains_at_stations
+    when 4
+      wagons_list
+    when 0
+      main_menu
+    else 
+      puts 'Error...'
+    end
+  end
+
+  def train_management
+    puts "- Type '1' to create a train ------------------------\n "
+    puts "- Type '2' to move train front ----------------------\n "
+    puts "- Type '3' to move train back -----------------------\n "
+    puts "- Type '4' to add wagons to the train ---------------\n "
+    puts "- Type '5' to delete wagons from the train ----------\n "
+    puts "- Type '6' to actions with he volume of wagons ------\n "
+    puts "- Type '0' to return to the main menu ---------------\n "
+    print "Write your answer here --> "
+
+    train_choice = gets.chomp.to_i
+
+    case train_choice
+    when 1
+      create_train
+      puts 'Train was created'
+    when 2
+      train_move_forward
+      puts 'Train moving front'
+    when 3
+      train_move_back
+      puts 'Train moving back'
+    when 4
+      add_wagon_for_train
+      puts 'Wagon was added'
+    when 5
+      delete_wagon_from_train
+      puts 'Wagon was deleted'
+    when 6
+      wagon_volume_action
+      puts 'Action completed successfully'
+    when 0
+      main_menu
+    else 
+      puts 'Error...'
+    end
+  end
+
+  def route_management
+    puts "- Type '1' to create a route ------------------------\n " 
+    puts "- Type '2' to add or delete station in route --------\n "
+    puts "- Type '3' to assign a train route ------------------\n "
+    puts "- Type '0' to return to the main menu ---------------\n "
+    print "Write your answer here --> "
+
+    route_choice = gets.chomp.to_i
+
+    case route_choice
+    when 1 
+      create_route
+      puts 'Route was created'
+    when 2
+      route_add_delete_stations
+      puts 'Action completed successfully'
+    when 3
+      route_assignment_for_train
+      puts 'Route was assigned'
+    when 0 
+      main_menu
+    else 
+      puts 'Error...'
     end
   end
 
