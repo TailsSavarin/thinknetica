@@ -1,0 +1,21 @@
+Style/Documentation:
+  Enabled: false
+
+Style/ClassVars:
+ Enabled: false
+
+Metrics/ClassLength:
+  Max: 310
+
+Metrics/AbcSize:
+  Exclude:
+    - '/Lesson8/interface.rb'
+
+Metrics/MethodLength:
+  Max: 50
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+
+Metrics/PerceivedComplexity:
+  Max: 10
