@@ -254,11 +254,11 @@ class Interface
 
   def wagons_list
     current_station = station_select(@stations)
+    wagons_number = 0
     puts "Complete train information at '#{current_station.name.capitalize}' Station:"
     current_station.trains_block do |train|
       train.wagons_block do |wagon|
-        wagon_number = 0
-        puts "Train #{train.number}: #{wagon_number += 1}. '#{wagon.type}'"
+        puts "Train #{train.number}: #{wagons_number += 1}. '#{wagon.type}'"
         if wagon.type == 'passenger'
           puts "Total seats: '#{wagon.seats}' # free seats: '#{wagon.free_seats}' # taken seats: '#{wagon.taken_seats}'"
         elsif wagon.type == 'cargo'

@@ -1,18 +1,16 @@
-
 Metrics/ClassLength:
-  Max: 270
+  Max: 300
 
-Metrics/AbcSize:
-  Exclude:
-    - 'Lesson8/main.rb'
+Metrics/LineLength:
+  Max: 140
 
 Metrics/MethodLength:
-  Max: 50
+  Max: 25
+
+Metrics/AbcSize:
+  Max: 25
 
 Metrics/CyclomaticComplexity:
-  Max: 30
-
-Metrics/PerceivedComplexity:
   Max: 10
 
 Style/Documentation:
