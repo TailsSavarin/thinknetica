@@ -7,11 +7,15 @@ class Station
   include InstanceCounter
   include Validatable
 
+  NAME_FORMAT = /^[a-z]{3,}$/i.freeze
+
   attr_reader :name, :trains_list
 
   @@created_stations = []
 
-  NAME_FORMAT = /^[a-z]{3,}$/i.freeze
+  def self.all
+    @@created_stations
+  end
 
   def initialize(name)
     @name = name
@@ -23,10 +27,6 @@ class Station
 
   def trains_block
     @trains_list.each { |train| yield(train) }
-  end
-
-  def self.all
-    @@created_stations
   end
 
   def take_train(train)
@@ -50,8 +50,8 @@ class Station
 
   def validate_name_format!
     return unless @name !~ NAME_FORMAT
-      raise ArgumentError, "Name '#{@name}' has invalid format!"
-    end
+
+    raise ArgumentError, "Name '#{@name}' has invalid format!"
   end
 
   def trains_by_type(type)

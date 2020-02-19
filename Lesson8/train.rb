@@ -8,11 +8,16 @@ class Train
   include CompanyManufacturer
   include InstanceCounter
   include Validatable
-  attr_reader :number, :speed, :wagons, :route, :type
 
   NUMBER_FORMAT = /^\w{3}-?\w{2}$/.freeze
 
+  attr_reader :number, :speed, :wagons, :route, :type
+
   @@trains_number = {}
+
+  def self.find(number)
+    @@trains_number[number]
+  end
 
   def initialize(number)
     @number = number
@@ -26,10 +31,6 @@ class Train
 
   def wagons_block
     @wagons.each { |wagon| yield(wagon) }
-  end
-
-  def self.find(number)
-    @@trains_number[number]
   end
 
   def add_wagon(wagon)
@@ -92,8 +93,8 @@ class Train
 
   def validate_number_format!
     return unless @number !~ NUMBER_FORMAT
-      raise ArgumentError, "Number '#{@number}' has invalid format!"
-    end
+
+    raise ArgumentError, "Number '#{@number}' has invalid format!"
   end
 
   def speed_up(speed = 5)

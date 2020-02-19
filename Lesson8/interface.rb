@@ -13,6 +13,39 @@ require_relative 'helper_methods.rb'
 class Interface
   attr_reader :stations, :trains, :routes, :wagons
 
+  MAIN_MENU = "
+---------------    Control  Panel     ---------------\n
+---------------       Type '1'        ---------------
+--------------- #Stations management# ---------------\n
+---------------       Type '2'        ---------------
+---------------  #Trains management#  ---------------\n
+---------------       Type '3'        ---------------
+---------------  #Routes management#  ---------------\n
+---------------       Type '0'        ---------------
+---------------         Exit          ---------------\n "
+
+  STATIONS_MENU = "
+- Type '1' to create a station ----------------------\n
+- Type '2' to view the list of stations -------------\n
+- Type '3' to view the list of trains at the stations\n
+- Type '4' to view list of wagons at the station ----\n
+- Type '0' to return to the main menu ---------------\n "
+
+  TRAINS_MENU = "
+- Type '1' to create a train ------------------------\n
+- Type '2' to move train front ----------------------\n
+- Type '3' to move train back -----------------------\n
+- Type '4' to add wagons to the train ---------------\n
+- Type '5' to delete wagons from the train ----------\n
+- Type '6' to actions with he volume of wagons ------\n
+- Type '0' to return to the main menu ---------------\n "
+
+  ROUTES_MENU = "
+- Type '1' to create a route ------------------------\n
+- Type '2' to add or delete station in route --------\n
+- Type '3' to assign a train route ------------------\n
+- Type '0' to return to the main menu ---------------\n "
+
   def initialize
     @stations = []
     @trains = []
@@ -28,10 +61,13 @@ class Interface
       case main_choice
       when 1
         station_management
+        break
       when 2
         train_management
+        break
       when 3
         route_management
+        break
       when 0
         break
       else
@@ -55,8 +91,9 @@ class Interface
       wagons_list
     when 0
       main_menu
+    else
+      puts 'Error...'
     end
-    puts 'Error...'
   end
 
   def train_management
@@ -241,7 +278,8 @@ class Interface
       quantity = gets.chomp.to_i
       current_wagon.take_volume(quantity)
     end
- 
+  end
+
   def wagon_select(_wagons)
     puts 'Type the number of the wagon you want to select'
     puts 'Wagons list:'
