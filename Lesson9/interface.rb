@@ -8,7 +8,7 @@ require_relative 'cargo_train'
 require_relative 'cargo_wagon'
 require_relative 'passenger_train'
 require_relative 'passenger_wagon'
-require_relative 'helper_methods.rb'
+require_relative 'validation'
 
 class Interface
   attr_reader :stations, :trains, :routes, :wagons
